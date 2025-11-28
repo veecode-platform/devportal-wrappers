@@ -1,0 +1,26 @@
+#
+# Starts DevPortal with pretty logging:
+#
+# docker compose up --no-log-prefix
+#
+
+services:
+  devportal:
+    image: veecode/devportal:latest
+    # start only after kubecfg finishes
+    # depends_on:
+      # kubecfg:
+      #   condition: service_completed_successfully
+    ports:
+      - "7007:7007"
+    environment:
+      - NODE_ENV=development
+      # will use shell value
+      - VEECODE_PROFILE=local
+    volumes:
+      # your config will add/override the default image config
+      #- ./app-config.yaml:/app/app-config.local.yaml:ro
+      # dynamic plugins config (just enable/disable plugins)
+      - ./dynamic-plugins.yaml:/app/dynamic-plugins.yaml:ro      
+      # plugin hack folder
+      - ./dist-dynamic:/app/dynamic-plugins/dist/veecode-plugin-scaffolder-backend-module-azure-devops-dynamic

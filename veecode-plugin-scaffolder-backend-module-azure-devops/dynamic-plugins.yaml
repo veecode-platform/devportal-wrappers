@@ -1,0 +1,7 @@
+includes:
+  - dynamic-plugins.default.yaml
+
+plugins:
+  - package: ./dynamic-plugins/dist/veecode-plugin-scaffolder-backend-module-azure-devops-dynamic
+    disabled: false
+    pluginConfig: {}
